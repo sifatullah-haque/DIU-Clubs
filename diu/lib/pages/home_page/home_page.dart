@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF6FAFF),
       body: Stack(
         children: [
           _buildHeader(),
@@ -52,6 +53,59 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(
+          height: 40.h,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Column(
+            children: [
+              Container(
+                  height: 400.h,
+                  child: GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        // childAspectRatio: 2 / 3,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 30.0),
+                    children: [
+                      GridViewIcons(
+                        title: "Leaderboard",
+                        icon: "Leaderboard",
+                      ),
+                      GridViewIcons(
+                        icon: "Daily_Streak",
+                        title: "Daily Streak",
+                      ),
+                      GridViewIcons(
+                        icon: "Join_Club",
+                        title: "Join Club",
+                      ),
+                      GridViewIcons(
+                        icon: "Certificates",
+                        title: "Certificates",
+                      ),
+                      GridViewIcons(
+                        icon: "Volunteer",
+                        title: "Volunteer",
+                      ),
+                      GridViewIcons(
+                        icon: "Personal_Data",
+                        title: "Personal Data",
+                      ),
+                      GridViewIcons(
+                        icon: "IDEA",
+                        title: "Idea",
+                      ),
+                      GridViewIcons(
+                        icon: "Support",
+                        title: "Support",
+                      ),
+                    ],
+                  ))
+            ],
+          ),
+        )
       ],
     );
   }
@@ -115,16 +169,17 @@ class HomePage extends StatelessWidget {
   Widget _buildRedContainer() {
     return Container(
       decoration: BoxDecoration(
-          color: Coloris.white,
-          borderRadius: BorderRadius.circular(15.0),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(255, 144, 163, 173),
-              offset: Offset(0, 1),
-              blurRadius: 10,
-              spreadRadius: 1,
-            )
-          ]),
+        color: Coloris.white,
+        borderRadius: BorderRadius.circular(15.0),
+        // boxShadow: const [
+        //   BoxShadow(
+        //     color: Color.fromARGB(255, 144, 163, 173),
+        //     offset: Offset(0, 1),
+        //     blurRadius: 10,
+        //     spreadRadius: 1,
+        //   )
+        // ]
+      ),
       alignment: Alignment.center,
       height: 55.h,
       child: Row(
@@ -155,5 +210,31 @@ class HomePage extends StatelessWidget {
   double _calculateContainerMiddlePosition(BuildContext context) {
     // Calculate the top position dynamically based on screen width
     return ScreenUtil().screenWidth * 0.22;
+  }
+}
+
+class GridViewIcons extends StatelessWidget {
+  String title;
+  String icon;
+  GridViewIcons({
+    super.key,
+    required this.icon,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        children: [
+          Image.asset(
+            "assets/Icons/home_page/$icon.png",
+            height: 66.h,
+          ),
+          Text(title, style: TextStyle(fontSize: 12.sp))
+        ],
+      ),
+    );
   }
 }
