@@ -1,4 +1,5 @@
-import 'package:diu/pages/login/login_page.dart';
+import 'package:diu/pages/home_page/home_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,8 +19,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: "Poppins",
               ),
               debugShowCheckedModeBanner: false,
-              title: 'Material App',
-              home: LoginPage(),
+              home: HomePage(),
             ));
   }
 }
