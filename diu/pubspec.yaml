@@ -68,6 +68,7 @@ flutter:
     - assets/Icons/specific_club/
     - assets/svg/
     - assets/avatars/
+    - assets/logos/
 
   # assets:
   #   - assets/
