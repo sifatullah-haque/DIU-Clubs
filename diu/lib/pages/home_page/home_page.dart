@@ -9,16 +9,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffF6FAFF),
-      body: Stack(
-        children: [
-          _buildHeader(),
-          Positioned(
-            top: _calculateContainerTopPosition(context),
-            left: _calculateContainerMiddlePosition(context),
-            right: _calculateContainerMiddlePosition(context),
-            child: _buildRedContainer(),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            _buildHeader(),
+            Positioned(
+              top: _calculateContainerTopPosition(context),
+              left: _calculateContainerMiddlePosition(context),
+              right: _calculateContainerMiddlePosition(context),
+              child: _buildRedContainer(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -54,58 +56,170 @@ class HomePage extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 40.h,
+          height: 20.h,
         ),
+        GridviewWithIcons(),
+
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  height: 400.h,
-                  child: GridView(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        // childAspectRatio: 2 / 3,
-                        crossAxisSpacing: 8.0,
-                        mainAxisSpacing: 30.0),
-                    children: [
-                      GridViewIcons(
-                        title: "Leaderboard",
-                        icon: "Leaderboard",
-                      ),
-                      GridViewIcons(
-                        icon: "Daily_Streak",
-                        title: "Daily Streak",
-                      ),
-                      GridViewIcons(
-                        icon: "Join_Club",
-                        title: "Join Club",
-                      ),
-                      GridViewIcons(
-                        icon: "Certificates",
-                        title: "Certificates",
-                      ),
-                      GridViewIcons(
-                        icon: "Volunteer",
-                        title: "Volunteer",
-                      ),
-                      GridViewIcons(
-                        icon: "Personal_Data",
-                        title: "Personal Data",
-                      ),
-                      GridViewIcons(
-                        icon: "IDEA",
-                        title: "Idea",
-                      ),
-                      GridViewIcons(
-                        icon: "Support",
-                        title: "Support",
-                      ),
-                    ],
-                  ))
+              Text(
+                "Your Clubs",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 55.h,
+                      backgroundColor: Colors.transparent,
+                      child: Image.asset("assets/logos/CPC.png"),
+                    ),
+                    CircleAvatar(
+                      radius: 55.h,
+                      backgroundColor: Colors.transparent,
+                      child: Image.asset("assets/logos/CDS.png"),
+                    ),
+                    SizedBox(
+                      width: 7.w,
+                    ),
+                    CircleAvatar(
+                      radius: 45.h,
+                      backgroundColor: Colors.transparent,
+                      child: Image.asset("assets/logos/FPC.png"),
+                    ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    CircleAvatar(
+                      radius: 55.h,
+                      backgroundColor: Colors.transparent,
+                      child: Image.asset("assets/logos/CPC.png"),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                "Upcoming Events",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+              ),
+              SizedBox(height: 10.0),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      height: 65.0,
+                      width: 120.0,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Container(
+                      height: 65.0,
+                      width: 120.0,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Container(
+                      height: 65.0,
+                      width: 120.0,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Container(
+                      height: 65.0,
+                      width: 120.0,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Container(
+                      height: 65.0,
+                      width: 120.0,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Container(
+                      height: 65.0,
+                      width: 120.0,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
-        )
+        ),
+
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       Text(
+        //         "Your Clubs",
+        //         style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+        //       ),
+        //       SizedBox(
+        //         height: 8.0,
+        //       ),
+        //       Row(
+        //         children: [
+        //           Container(
+        //             child: Column(
+        //               children: [
+        //                 Container(
+        //                   height: 90.h,
+        //                   width: 130.w,
+        //                   decoration: BoxDecoration(
+        //                     color: Colors.grey,
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 5.0,
+        //                 ),
+        //                 Text("DIU CPC"),
+        //               ],
+        //             ),
+        //           )
+        //         ],
+        //       )
+        //     ],
+        //   ),
+        // )
       ],
     );
   }
@@ -210,6 +324,66 @@ class HomePage extends StatelessWidget {
   double _calculateContainerMiddlePosition(BuildContext context) {
     // Calculate the top position dynamically based on screen width
     return ScreenUtil().screenWidth * 0.22;
+  }
+}
+
+class GridviewWithIcons extends StatelessWidget {
+  const GridviewWithIcons({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Column(
+        children: [
+          Container(
+              height: 270.h,
+              child: GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    // childAspectRatio: 2 / 3,
+                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 20.0),
+                children: [
+                  GridViewIcons(
+                    title: "Leaderboard",
+                    icon: "Leaderboard",
+                  ),
+                  GridViewIcons(
+                    icon: "Daily_Streak",
+                    title: "Daily Streak",
+                  ),
+                  GridViewIcons(
+                    icon: "Join_Club",
+                    title: "Join Club",
+                  ),
+                  GridViewIcons(
+                    icon: "Certificates",
+                    title: "Certificates",
+                  ),
+                  GridViewIcons(
+                    icon: "Volunteer",
+                    title: "Volunteer",
+                  ),
+                  GridViewIcons(
+                    icon: "Personal_Data",
+                    title: "Personal Data",
+                  ),
+                  GridViewIcons(
+                    icon: "IDEA",
+                    title: "Idea",
+                  ),
+                  GridViewIcons(
+                    icon: "Support",
+                    title: "Support",
+                  ),
+                ],
+              ))
+        ],
+      ),
+    );
   }
 }
 
