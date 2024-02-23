@@ -13,7 +13,7 @@ class IconsAndEventScroll extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Your Clubs",
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
           ),
@@ -56,11 +56,11 @@ class IconsAndEventScroll extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          Text(
+          const Text(
             "Upcoming Events",
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(

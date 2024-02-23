@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF6FAFF),
+      backgroundColor: Coloris.backgroundColor,
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -61,8 +61,8 @@ class HomePage extends StatelessWidget {
         SizedBox(
           height: 20.h,
         ),
-        GridviewWithIcons(),
-        IconsAndEventScroll(),
+        const GridviewWithIcons(),
+        const IconsAndEventScroll(),
       ],
     );
   }
@@ -128,14 +128,6 @@ class HomePage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Coloris.white,
         borderRadius: BorderRadius.circular(15.0),
-        // boxShadow: const [
-        //   BoxShadow(
-        //     color: Color.fromARGB(255, 144, 163, 173),
-        //     offset: Offset(0, 1),
-        //     blurRadius: 10,
-        //     spreadRadius: 1,
-        //   )
-        // ]
       ),
       alignment: Alignment.center,
       height: 55.h,
