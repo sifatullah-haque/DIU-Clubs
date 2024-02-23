@@ -1,4 +1,6 @@
 import 'package:diu/pages/home_page/Certificate/certificate.dart';
+import 'package:diu/pages/home_page/Daily_Streak/Volunteer_Success.dart';
+import 'package:diu/pages/home_page/Daily_Streak/daily_streak.dart';
 import 'package:diu/pages/home_page/Join_Club/join_club.dart';
 import 'package:diu/pages/home_page/Join_Club/join_club_success.dart';
 import 'package:diu/pages/home_page/Personal_Data/personal_data.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: "Poppins",
               ),
               debugShowCheckedModeBanner: false,
-              home: JoinClubSuccess(),
+              home: DailyStreak(),
             ));
   }
 }
