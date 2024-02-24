@@ -1,3 +1,4 @@
+import 'package:diu/Constant/color_is.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,6 +10,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Coloris.backgroundColor,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Center(

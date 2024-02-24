@@ -1,5 +1,6 @@
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
+import 'package:diu/pages/home_page/pure_home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -49,7 +50,10 @@ class VolunteerSuccess extends StatelessWidget {
                     SizedBox(
                       height: 20.h,
                     ),
-                    Common_Button(text: "Go Home"),
+                    Common_Button(
+                      text: "Go Home",
+                      destination: HomePage(),
+                    ),
                   ],
                 ),
                 SizedBox(

@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
-
 import 'color_is.dart';
 
 class Common_Button extends StatelessWidget {
   final String text;
+  final Widget destination; // Destination screen widget
   const Common_Button({
-    super.key,
+    Key? key,
     required this.text,
-  });
+    required this.destination, // Destination screen widget parameter
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        shape: MaterialStatePropertyAll(
+        shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
-            borderRadius: BorderRadiusDirectional.circular(6),
+            borderRadius: BorderRadius.circular(6),
           ),
         ),
-        backgroundColor: const MaterialStatePropertyAll(Coloris.primary_color),
+        backgroundColor: MaterialStateProperty.all(Coloris.primary_color),
       ),
       onPressed: () {
-        // Perform login action
+        // Navigate to the destination screen when the button is pressed
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => destination),
+        );
       },
       child: Text(
         text,

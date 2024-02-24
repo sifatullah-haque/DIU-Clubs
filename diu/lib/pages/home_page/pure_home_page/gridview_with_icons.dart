@@ -1,3 +1,11 @@
+import 'package:diu/pages/home_page/Certificate/certificate.dart';
+import 'package:diu/pages/home_page/Daily_Streak/daily_streak.dart';
+import 'package:diu/pages/home_page/Idea/Idea.dart';
+import 'package:diu/pages/home_page/Join_Club/join_club.dart';
+import 'package:diu/pages/home_page/Leaderboard/leaderboard.dart';
+import 'package:diu/pages/home_page/Personal_Data/personal_data.dart';
+import 'package:diu/pages/home_page/Support/Support.dart';
+import 'package:diu/pages/home_page/Volunteer/volunteer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,34 +32,42 @@ class GridviewWithIcons extends StatelessWidget {
                   GridViewIcons(
                     title: "Leaderboard",
                     icon: "Leaderboard",
+                    destination: Leaderboard(),
                   ),
                   GridViewIcons(
                     icon: "Daily_Streak",
                     title: "Daily Streak",
+                    destination: DailyStreak(),
                   ),
                   GridViewIcons(
                     icon: "Join_Club",
                     title: "Join Club",
+                    destination: JoinClub(),
                   ),
                   GridViewIcons(
                     icon: "Certificates",
                     title: "Certificates",
+                    destination: Certificate(),
                   ),
                   GridViewIcons(
                     icon: "Volunteer",
                     title: "Volunteer",
+                    destination: Volunteer(),
                   ),
                   GridViewIcons(
                     icon: "Personal_Data",
                     title: "Personal Data",
+                    destination: PersonalData(),
                   ),
                   GridViewIcons(
                     icon: "IDEA",
                     title: "Idea",
+                    destination: Idea(),
                   ),
                   GridViewIcons(
                     icon: "Support",
                     title: "Support",
+                    destination: Support(),
                   ),
                 ],
               ))
@@ -65,24 +81,34 @@ class GridviewWithIcons extends StatelessWidget {
 class GridViewIcons extends StatelessWidget {
   String title;
   String icon;
+  final Widget destination;
   GridViewIcons({
     super.key,
     required this.icon,
     required this.title,
+    required this.destination,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        children: [
-          Image.asset(
-            "assets/Icons/home_page/$icon.png",
-            height: 66.h,
-          ),
-          Text(title, style: TextStyle(fontSize: 12.sp))
-        ],
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => destination),
+          );
+        },
+        child: Column(
+          children: [
+            Image.asset(
+              "assets/Icons/home_page/$icon.png",
+              height: 66.h,
+            ),
+            Text(title, style: TextStyle(fontSize: 12.sp))
+          ],
+        ),
       ),
     );
   }

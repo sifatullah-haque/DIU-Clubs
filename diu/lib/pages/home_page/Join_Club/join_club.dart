@@ -1,5 +1,6 @@
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
+import 'package:diu/pages/home_page/Join_Club/join_club_success.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -106,6 +107,7 @@ class JoinClub extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 20.h), // Adjust padding
                   child: const Common_Button(
                     text: "Submit",
+                    destination: JoinClubSuccess(),
                   ),
                 ),
               ),

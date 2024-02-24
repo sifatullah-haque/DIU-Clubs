@@ -1,6 +1,8 @@
 import 'dart:async';
-import 'package:diu/Constant/color_is.dart';
 import 'package:flutter/material.dart';
+import 'package:diu/Constant/color_is.dart';
+import 'package:diu/Constant/common_button.dart';
+import 'package:diu/pages/home_page/Daily_Streak/daily_streak_success.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DailyStreak extends StatefulWidget {
@@ -25,6 +27,8 @@ class _DailyStreakState extends State<DailyStreak> {
     hours = 0;
     minutes = 0;
     seconds = 10;
+    // Initialize the timer with a dummy timer
+    timer = Timer(Duration.zero, () {});
   }
 
   @override
@@ -88,11 +92,8 @@ class _DailyStreakState extends State<DailyStreak> {
                     label: "Start",
                   )
                 else if (isTimerFinished)
-                  _buildButton(
-                    onPressed: finishTimer,
-                    icon: Icons.stop,
-                    label: "Finish",
-                  ),
+                  Common_Button(
+                      text: "Finish", destination: DailyStreakSuccess()),
                 SizedBox(height: 30.h),
                 Text(
                   "“Pursue what catches your heart, not what catches your eyes.”",
@@ -102,7 +103,7 @@ class _DailyStreakState extends State<DailyStreak> {
                   ),
                 ),
                 Text(
-                  " ― Roy T. Bennett",
+                  " ― Roy T. Bennett",
                 )
               ],
             ),
@@ -145,6 +146,7 @@ class _DailyStreakState extends State<DailyStreak> {
     setState(() {
       isTimerActive = true;
     });
+    timer.cancel(); // Cancel previous timer if exists
     timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
         if (seconds > 0) {
