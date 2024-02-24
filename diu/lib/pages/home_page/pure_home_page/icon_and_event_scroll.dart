@@ -1,3 +1,4 @@
+import 'package:diu/Constant/color_is.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -69,7 +70,7 @@ class IconsAndEventScroll extends StatelessWidget {
                   height: 65.0,
                   width: 120.0,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Coloris.primary_color,
                       borderRadius: BorderRadius.circular(10.0)),
                 ),
                 SizedBox(
@@ -79,7 +80,7 @@ class IconsAndEventScroll extends StatelessWidget {
                   height: 65.0,
                   width: 120.0,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Coloris.primary_color,
                       borderRadius: BorderRadius.circular(10.0)),
                 ),
                 SizedBox(
@@ -89,7 +90,7 @@ class IconsAndEventScroll extends StatelessWidget {
                   height: 65.0,
                   width: 120.0,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Coloris.primary_color,
                       borderRadius: BorderRadius.circular(10.0)),
                 ),
                 SizedBox(
@@ -99,7 +100,7 @@ class IconsAndEventScroll extends StatelessWidget {
                   height: 65.0,
                   width: 120.0,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Coloris.primary_color,
                       borderRadius: BorderRadius.circular(10.0)),
                 ),
                 SizedBox(
@@ -109,7 +110,7 @@ class IconsAndEventScroll extends StatelessWidget {
                   height: 65.0,
                   width: 120.0,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Coloris.primary_color,
                       borderRadius: BorderRadius.circular(10.0)),
                 ),
                 SizedBox(
@@ -119,7 +120,7 @@ class IconsAndEventScroll extends StatelessWidget {
                   height: 65.0,
                   width: 120.0,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Coloris.primary_color,
                       borderRadius: BorderRadius.circular(10.0)),
                 ),
                 SizedBox(
