@@ -1,4 +1,6 @@
 import 'package:diu/Constant/color_is.dart';
+import 'package:diu/Constant/common_button.dart';
+import 'package:diu/pages/home_page/pure_home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -92,24 +94,7 @@ class CustomTabBar extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStatePropertyAll(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadiusDirectional.circular(6),
-                ),
-              ),
-              backgroundColor: MaterialStatePropertyAll(Coloris.primary_color),
-            ),
-            onPressed: () {
-              // Perform login action
-            },
-            child: const Text(
-              'Login',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
-            ),
-          ),
+          Common_Button(text: "Login", destination: HomePage()),
           SizedBox(height: 50.h),
         ],
       ),

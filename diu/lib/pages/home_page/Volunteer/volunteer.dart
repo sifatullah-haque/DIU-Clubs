@@ -1,5 +1,6 @@
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
+import 'package:diu/pages/home_page/Volunteer/Volunteer_Success.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -70,6 +71,7 @@ class Volunteer extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 20.h), // Adjust padding
                   child: Common_Button(
                     text: "Submit",
+                    destination: VolunteerSuccess(),
                   ),
                 ),
               ),

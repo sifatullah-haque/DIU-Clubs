@@ -4,8 +4,8 @@ import 'package:diu/pages/home_page/pure_home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class VolunteerSuccess extends StatelessWidget {
-  const VolunteerSuccess({super.key});
+class DailyStreakSuccess extends StatelessWidget {
+  const DailyStreakSuccess({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,14 @@ class VolunteerSuccess extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset("assets/svg/Volunteer.png"),
+                Image.asset("assets/svg/Daily_Streak_Success.png"),
                 SizedBox(
-                  height: 50.h,
+                  height: 40.h,
                 ),
                 Column(
                   children: [
                     Text(
-                      "Congratulation !",
+                      "You Did It !",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 40.sp,
@@ -40,7 +40,7 @@ class VolunteerSuccess extends StatelessWidget {
                       height: 10.h,
                     ),
                     Text(
-                      "Thank you for your interest! We'll be in touch soon with more information ",
+                      "Congratulation! You’ve successfully Finished your daily task. see you tomorrow ",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Coloris.secondary_color,
@@ -57,7 +57,7 @@ class VolunteerSuccess extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 280.h,
+                  height: 250.h,
                 )
               ],
             ),
