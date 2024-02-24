@@ -61,27 +61,30 @@ class Leaderboard extends StatelessWidget {
   Widget _buildAvatarAndUserInfo() {
     return Column(
       children: [
-        PositionWithName(
+        const PositionWithName(
           pos: 1,
           name: "Hey_Sifu",
           point: 1350,
           color: Colors.orange,
+          image: "sifat.jpg",
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            PositionWithName(
+            const PositionWithName(
               pos: 2,
               name: "Rakib3_",
               point: 1300,
               color: Colors.white,
+              image: "rakib.png",
             ),
             SizedBox(width: 20.w),
-            PositionWithName(
+            const PositionWithName(
               pos: 3,
               name: "Ifram96",
               point: 1290,
               color: Colors.brown,
+              image: "ifram.jpg",
             ),
           ],
         ),
@@ -133,7 +136,7 @@ class Leaderboard extends StatelessWidget {
       itemBuilder: (context, index) {
         return Column(
           children: [
-            ListTile(
+            const ListTile(
               title: Padding(
                 padding: const EdgeInsets.only(left: 5.0),
                 child: Text("User_name"),
@@ -163,6 +166,7 @@ class PositionWithName extends StatelessWidget {
   final String name;
   final int point;
   final Color color;
+  final String image;
 
   const PositionWithName({
     Key? key,
@@ -170,6 +174,7 @@ class PositionWithName extends StatelessWidget {
     required this.name,
     required this.point,
     required this.color,
+    required this.image,
   });
 
   @override
@@ -189,7 +194,7 @@ class PositionWithName extends StatelessWidget {
           backgroundColor: color,
           child: CircleAvatar(
             radius: 38.0,
-            backgroundImage: AssetImage("assets/avatars/sifat.jpg"),
+            backgroundImage: AssetImage("assets/avatars/$image"),
           ),
         ),
         Text(
@@ -223,19 +228,19 @@ class DottedDivider extends StatelessWidget {
         final dashHeight = 1.0;
         final dashCount = (width / (2 * dashWidth)).floor();
         return Flex(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          direction: Axis.horizontal,
           children: List.generate(dashCount, (_) {
             return SizedBox(
               width: dashWidth,
               height: dashHeight,
-              child: DecoratedBox(
+              child: const DecoratedBox(
                 decoration: BoxDecoration(
                   color: Colors.grey,
                 ),
               ),
             );
           }),
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          direction: Axis.horizontal,
         );
       },
     );
