@@ -134,11 +134,11 @@ class Leaderboard extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 20.h),
       itemCount: 20,
       itemBuilder: (context, index) {
-        return Column(
+        return const Column(
           children: [
-            const ListTile(
+            ListTile(
               title: Padding(
-                padding: const EdgeInsets.only(left: 5.0),
+                padding: EdgeInsets.only(left: 5.0),
                 child: Text("User_name"),
               ),
               leading: CircleAvatar(
@@ -219,22 +219,24 @@ class PositionWithName extends StatelessWidget {
 }
 
 class DottedDivider extends StatelessWidget {
+  const DottedDivider({super.key});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final double width = constraints.constrainWidth();
-        final dashWidth = 5.0;
-        final dashHeight = 1.0;
+        const dashWidth = 5.0;
+        const dashHeight = 1.0;
         final dashCount = (width / (2 * dashWidth)).floor();
         return Flex(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           direction: Axis.horizontal,
           children: List.generate(dashCount, (_) {
-            return SizedBox(
+            return const SizedBox(
               width: dashWidth,
               height: dashHeight,
-              child: const DecoratedBox(
+              child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: Colors.grey,
                 ),

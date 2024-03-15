@@ -4,12 +4,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_tab_bar.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginPage1 extends StatelessWidget {
+  const LoginPage1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Coloris.backgroundColor,
+        toolbarHeight: 0,
+        elevation: 0,
+        shadowColor: Coloris.backgroundColor,
+        foregroundColor: Coloris.backgroundColor,
+        surfaceTintColor: Coloris.backgroundColor,
+      ),
       backgroundColor: Coloris.backgroundColor,
       resizeToAvoidBottomInset: false,
       body: SafeArea(

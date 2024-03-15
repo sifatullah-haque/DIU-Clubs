@@ -1,16 +1,23 @@
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
-import 'package:diu/pages/home_page/pure_home_page/home_page.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class CustomTabBar extends StatelessWidget {
-  final TextEditingController loginController = TextEditingController();
-  final TextEditingController registrationController = TextEditingController();
-
   CustomTabBar({Key? key}) : super(key: key);
   bool? ischecked = false;
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +61,7 @@ class CustomTabBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
-            controller: loginController,
+            controller: _emailController,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.mail_outline_rounded),
               prefixIconColor: Coloris.secondary_color,
@@ -69,7 +76,7 @@ class CustomTabBar extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           TextField(
-            controller: loginController,
+            controller: _passwordController,
             obscureText: true,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.lock_outline_rounded),
@@ -94,7 +101,10 @@ class CustomTabBar extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          Common_Button(text: "Login", destination: HomePage()),
+          Common_Button(
+            text: "Login",
+            onpressed: signIn,
+          ),
           SizedBox(height: 50.h),
         ],
       ),
@@ -108,26 +118,24 @@ class CustomTabBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(
-            controller: registrationController,
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Username',
             ),
           ),
-          SizedBox(height: 20),
-          TextField(
-            controller: registrationController,
+          const SizedBox(height: 20),
+          const TextField(
             obscureText: true,
             decoration: InputDecoration(
               labelText: 'Password',
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               // Perform registration action
             },
-            child: Text('Register'),
+            child: const Text('Register'),
           ),
         ],
       ),
