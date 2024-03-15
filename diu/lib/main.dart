@@ -1,6 +1,6 @@
 import 'package:diu/Constant/firebase_options.dart';
+
 import 'package:diu/auth/login/isLogin.dart';
-import 'package:diu/auth/login/login.dart';
 import 'package:diu/auth/register/register.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -20,15 +20,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: Size(428, 926.3),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) => MaterialApp(
-              theme: ThemeData(
-                fontFamily: "Poppins",
-              ),
-              debugShowCheckedModeBanner: false,
-              home: RegisterPage(),
-            ));
+      designSize: Size(428, 926.3),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => MaterialApp(
+          theme: ThemeData(
+            fontFamily: "Poppins",
+          ),
+          debugShowCheckedModeBanner: false,
+          home: IsLogin()),
+    );
   }
 }

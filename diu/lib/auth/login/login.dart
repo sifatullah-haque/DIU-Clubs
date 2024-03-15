@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  final VoidCallback showRegisterPage;
+  LoginPage({super.key, required this.showRegisterPage});
+
   final _emailController = TextEditingController();
+
   final _passwordController = TextEditingController();
 
   Future signIn() async {
@@ -138,9 +141,13 @@ class LoginPage extends StatelessWidget {
                                 color: Coloris.secondary_color,
                                 fontSize: 18.sp)),
                         SizedBox(width: 10.w),
-                        Text("Register Now",
-                            style: TextStyle(
-                                color: Coloris.primary_color, fontSize: 18.sp))
+                        GestureDetector(
+                          onTap: showRegisterPage,
+                          child: Text("Register Now",
+                              style: TextStyle(
+                                  color: Coloris.primary_color,
+                                  fontSize: 18.sp)),
+                        )
                       ],
                     ),
                   ],

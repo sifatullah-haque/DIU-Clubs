@@ -1,4 +1,5 @@
 import 'package:diu/Constant/color_is.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -117,9 +118,14 @@ class HomePage extends StatelessWidget {
         color: Coloris.white,
         borderRadius: BorderRadius.circular(30),
       ),
-      child: const Padding(
+      child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
-        child: Text("Current Streak"),
+        child: GestureDetector(
+          onTap: () {
+            FirebaseAuth.instance.signOut();
+          },
+          child: Text("Current Streak"),
+        ),
       ),
     );
   }

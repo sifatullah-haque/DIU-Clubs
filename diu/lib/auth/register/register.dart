@@ -1,26 +1,100 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterPage extends StatelessWidget {
-  RegisterPage({Key? key}) : super(key: key);
+  final VoidCallback showLoginPage;
+  RegisterPage({Key? key, required this.showLoginPage}) : super(key: key);
+
   final _emailController = TextEditingController();
+
   final _passwordController = TextEditingController();
+
   final _firstNameController = TextEditingController();
+
   final _lastNameController = TextEditingController();
+
   final _phoneController = TextEditingController();
+
   final _confirmPasswordController = TextEditingController();
+
   final _rollNumberController = TextEditingController();
+
   final _departmentController = TextEditingController();
+
   final _registrationNumberController = TextEditingController();
+
   final _batchNumberController = TextEditingController();
 
   final _semesterController = TextEditingController();
 
+  Future Register() async {
+    //login user
+    if (passConfirm()) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
+    }
+
+    //addUser
+    await addUserDetails(
+      _firstNameController.text.trim(),
+      _lastNameController.text.trim(),
+      int.parse(_phoneController.text.trim()),
+      int.parse(_rollNumberController.text.trim()),
+      _batchNumberController.text.trim(),
+      _registrationNumberController.text.trim(),
+      _departmentController.text.trim(),
+      _semesterController.text.trim(),
+      _emailController.text.trim(),
+      _passwordController.text.trim(),
+    );
+  }
+
+  Future addUserDetails(
+      String firstName,
+      String lastName,
+      int phoneNo,
+      int rollNo,
+      String batchNo,
+      String registrationNo,
+      String deptName,
+      String semesterNo,
+      String emailAdd,
+      String pass) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'firstName': firstName,
+      'lastName': lastName,
+      'phoneNo': phoneNo,
+      'rollNo': rollNo,
+      'batchNo': batchNo,
+      'registrationNo': registrationNo,
+      'deptName': deptName,
+      'semesterNo': semesterNo,
+      'emailAdd': emailAdd,
+      'pass': pass,
+    });
+  }
+
+  bool passConfirm() {
+    if (_passwordController.text.trim() ==
+        _confirmPasswordController.text.trim()) {
+      return true;
+    } else
+      return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Coloris.backgroundColor,
+        toolbarHeight: 0,
+      ),
       resizeToAvoidBottomInset: true,
       backgroundColor: Coloris.backgroundColor,
       body: SingleChildScrollView(
@@ -142,6 +216,7 @@ class RegisterPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20.h),
                 Common_Button(
+                  onpressed: Register,
                   text: "Register",
                   size: 150,
                 ),
@@ -158,12 +233,15 @@ class RegisterPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 10.w),
-                    Expanded(
-                      child: Text(
-                        "Login Now",
-                        style: TextStyle(
-                          color: Coloris.primary_color,
-                          fontSize: 18.sp,
+                    GestureDetector(
+                      onTap: showLoginPage,
+                      child: Expanded(
+                        child: Text(
+                          "Login Now",
+                          style: TextStyle(
+                            color: Coloris.primary_color,
+                            fontSize: 18.sp,
+                          ),
                         ),
                       ),
                     ),
@@ -232,22 +310,3 @@ class InputTextField extends StatelessWidget {
     );
   }
 }
-
-// class CommonButton extends StatelessWidget {
-//   final String text;
-//   final VoidCallback onPressed;
-
-//   const CommonButton({
-//     Key? key,
-//     required this.text,
-//     required this.onPressed,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       onPressed: onPressed,
-//       child: Text(text),
-//     );
-//   }
-// }
