@@ -72,7 +72,7 @@ class Idea extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 20.h), // Adjust padding
-                  child: Common_Button(
+                  child: const Common_Button(
                     text: "Submit",
                     destination: IdeaSuccess(),
                   ),
@@ -83,7 +83,7 @@ class Idea extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/svg/button_svg.png"),
             fit: BoxFit.cover,

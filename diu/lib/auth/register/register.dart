@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +32,7 @@ class RegisterPage extends StatelessWidget {
 
   final _semesterController = TextEditingController();
 
-  Future Register() async {
+  Future register() async {
     //login user
     if (passConfirm()) {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -66,7 +66,10 @@ class RegisterPage extends StatelessWidget {
       String semesterNo,
       String emailAdd,
       String pass) async {
-    await FirebaseFirestore.instance.collection('users').add({
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
       'firstName': firstName,
       'lastName': lastName,
       'phoneNo': phoneNo,
@@ -75,8 +78,8 @@ class RegisterPage extends StatelessWidget {
       'registrationNo': registrationNo,
       'deptName': deptName,
       'semesterNo': semesterNo,
-      'emailAdd': emailAdd,
-      'pass': pass,
+      'email': emailAdd,
+      'password': pass,
     });
   }
 
@@ -216,7 +219,7 @@ class RegisterPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20.h),
                 Common_Button(
-                  onpressed: Register,
+                  onpressed: register,
                   text: "Register",
                   size: 150,
                 ),

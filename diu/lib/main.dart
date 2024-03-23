@@ -1,7 +1,8 @@
 import 'package:diu/Constant/firebase_options.dart';
 
 import 'package:diu/auth/login/isLogin.dart';
-import 'package:diu/auth/register/register.dart';
+import 'package:diu/pages/home_page/Volunteer/volunteer.dart';
+import 'package:diu/willDeleteLater/test.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
             fontFamily: "Poppins",
           ),
           debugShowCheckedModeBanner: false,
-          home: IsLogin()),
+          home: Volunteer()),
     );
   }
 }

@@ -1,13 +1,19 @@
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
+import 'package:diu/auth/forgot_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   final VoidCallback showRegisterPage;
   LoginPage({super.key, required this.showRegisterPage});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -16,6 +22,13 @@ class LoginPage extends StatelessWidget {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim());
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -123,9 +136,19 @@ class LoginPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text("Forgot Password?",
-                            style: TextStyle(
-                                color: Coloris.primary_color, fontSize: 18.sp))
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ForgotPassword(),
+                                ));
+                          },
+                          child: Text("Forgot Password?",
+                              style: TextStyle(
+                                  color: Coloris.primary_color,
+                                  fontSize: 18.sp)),
+                        )
                       ],
                     ),
                     SizedBox(height: 20.h),
@@ -142,7 +165,7 @@ class LoginPage extends StatelessWidget {
                                 fontSize: 18.sp)),
                         SizedBox(width: 10.w),
                         GestureDetector(
-                          onTap: showRegisterPage,
+                          onTap: widget.showRegisterPage,
                           child: Text("Register Now",
                               style: TextStyle(
                                   color: Coloris.primary_color,

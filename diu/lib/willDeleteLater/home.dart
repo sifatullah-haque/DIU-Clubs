@@ -1,43 +1,60 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diu/Constant/color_is.dart';
+import 'package:diu/pages/home_page/pure_home_page/gridview_with_icons.dart';
+import 'package:diu/pages/home_page/pure_home_page/icon_and_event_scroll.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'gridview_with_icons.dart';
-import 'icon_and_event_scroll.dart';
-
-class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePageTest extends StatefulWidget {
+  HomePageTest({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePageTest> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePageTest> {
   final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Coloris.backgroundColor,
-      //
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            _buildHeader(),
-            Positioned(
-              top: _calculateContainerTopPosition(context),
-              left: _calculateContainerMiddlePosition(context),
-              right: _calculateContainerMiddlePosition(context),
-              child: _buildRedContainer(),
-            ),
-          ],
-        ),
-      ),
-    );
+        backgroundColor: Coloris.backgroundColor,
+        //
+        body: StreamBuilder<DocumentSnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc(user?.uid)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data!.exists) {
+              final userData = snapshot.data!.data() as Map<String, dynamic>;
+              return SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    _buildHeader(userData['firstName'], userData['lastName']),
+                    Positioned(
+                      top: _calculateContainerTopPosition(context),
+                      left: _calculateContainerMiddlePosition(context),
+                      right: _calculateContainerMiddlePosition(context),
+                      child: _buildRedContainer(),
+                    ),
+                  ],
+                ),
+              );
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Center(
+              child: Text("Error Loading Data. Try Again"),
+            );
+          },
+        ));
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(String firstName, String lastName) {
     return Column(
       children: [
         Container(
@@ -59,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   SizedBox(height: 30.h),
-                  _buildAvatarAndUserInfo(),
+                  _buildAvatarAndUserInfo(firstName, lastName),
                   SizedBox(height: 15.h),
                   _buildCurrentStreakContainer(),
                 ],
@@ -76,11 +93,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildAvatarAndUserInfo() {
+  Widget _buildAvatarAndUserInfo(String firstName, String lastName) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           radius: 45.0,
           backgroundImage: AssetImage("assets/avatars/sifat.jpg"),
         ),
@@ -89,7 +106,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello ! ${user?.displayName}",
+              "Hello !",
               style: TextStyle(
                 color: Coloris.white,
                 fontWeight: FontWeight.w600,
@@ -98,7 +115,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 5.sp),
             Text(
-              "Sifatullah Haque Sajeeb",
+              "$firstName $lastName",
               style: TextStyle(
                 color: Coloris.white,
                 fontSize: 20.sp,
