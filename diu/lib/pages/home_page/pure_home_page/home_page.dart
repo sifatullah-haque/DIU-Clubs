@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello ! ${user?.displayName}",
+              "Hello ! ",
               style: TextStyle(
                 color: Coloris.white,
                 fontWeight: FontWeight.w600,

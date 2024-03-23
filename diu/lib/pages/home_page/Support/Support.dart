@@ -1,12 +1,23 @@
+import 'package:diu/Constant/backend/CRUD.dart';
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
+import 'package:diu/Constant/common_input_field.dart';
 import 'package:diu/pages/home_page/Support/Supoport_Success.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Support extends StatelessWidget {
-  const Support({Key? key}) : super(key: key);
+  Support({Key? key}) : super(key: key);
 
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController batchController = TextEditingController();
+  final TextEditingController rollController = TextEditingController();
+  final TextEditingController helpController = TextEditingController();
+
+  //add firebase firestore
+
+  final firestoreService fireStoreSupport = firestoreService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,46 +49,78 @@ class Support extends StatelessWidget {
                 // hasDropDownIcon: true,
               ),
               SizedBox(height: 10.h),
-              const InputField(
+              InputFieldCommon(
+                Controller: nameController,
                 titleText: "Full Name: ",
                 fieldText: "Ex: Sifatullah Haque",
               ),
-              const InputField(
+              InputFieldCommon(
+                Controller: phoneController,
                 titleText: "Mobile No: ",
                 fieldText: "Ex: 018********",
               ),
               Row(
                 children: [
-                  const Expanded(
-                    child: InputField(
+                  Expanded(
+                    child: InputFieldCommon(
+                      Controller: batchController,
                       titleText: "Batch: ",
                       fieldText: "Ex: D-78",
                     ),
                   ),
                   SizedBox(width: 10.w),
-                  const Expanded(
-                    child: InputField(
+                  Expanded(
+                    child: InputFieldCommon(
+                      Controller: rollController,
                       titleText: "Roll: ",
                       fieldText: "Ex: 10",
                     ),
                   ),
                 ],
               ),
-              const InputField(
+              InputFieldCommon(
+                Controller: helpController,
                 titleText: "Ask for help: ",
                 fieldText: "Enter your text here...",
                 maxLines: 6,
               ),
               SizedBox(height: 10.h),
               Center(
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 20.h), // Adjust padding
-                  child: Common_Button(
-                    text: "Submit",
-                    destination: SupportSuccess(),
+                child: GestureDetector(
+                  onTap: () {
+                    fireStoreSupport.addSupport(
+                        nameController.text,
+                        phoneController.text,
+                        batchController.text,
+                        rollController.text,
+                        helpController.text);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SupportSuccess(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 50.h,
+                    width: 200.w,
+                    decoration: BoxDecoration(
+                      color: Coloris.primary_color,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),

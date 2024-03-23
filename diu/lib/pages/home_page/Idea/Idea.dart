@@ -1,11 +1,21 @@
+import 'package:diu/Constant/backend/CRUD.dart';
 import 'package:diu/Constant/color_is.dart';
-import 'package:diu/Constant/common_button.dart';
+
+import 'package:diu/Constant/common_input_field.dart';
 import 'package:diu/pages/home_page/Idea/Idea_Success.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Idea extends StatelessWidget {
-  const Idea({Key? key}) : super(key: key);
+  Idea({Key? key}) : super(key: key);
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController batchController = TextEditingController();
+  final TextEditingController rollController = TextEditingController();
+  final TextEditingController ideaController = TextEditingController();
+
+  final firestoreService fireStoreIdea = firestoreService();
 
   @override
   Widget build(BuildContext context) {
@@ -38,46 +48,78 @@ class Idea extends StatelessWidget {
                 // hasDropDownIcon: true,
               ),
               SizedBox(height: 10.h),
-              const InputField(
+              InputFieldCommon(
+                Controller: nameController,
                 titleText: "Full Name: ",
                 fieldText: "Ex: Sifatullah Haque",
               ),
-              const InputField(
+              InputFieldCommon(
+                Controller: phoneController,
                 titleText: "Mobile No: ",
                 fieldText: "Ex: 018********",
               ),
               Row(
                 children: [
-                  const Expanded(
-                    child: InputField(
+                  Expanded(
+                    child: InputFieldCommon(
+                      Controller: batchController,
                       titleText: "Batch: ",
                       fieldText: "Ex: D-78",
                     ),
                   ),
                   SizedBox(width: 10.w),
-                  const Expanded(
-                    child: InputField(
+                  Expanded(
+                    child: InputFieldCommon(
+                      Controller: rollController,
                       titleText: "Roll: ",
                       fieldText: "Ex: 10",
                     ),
                   ),
                 ],
               ),
-              const InputField(
+              InputFieldCommon(
+                Controller: ideaController,
                 titleText: "Share your idea: ",
                 fieldText: "Enter your idea here...",
                 maxLines: 6,
               ),
               SizedBox(height: 10.h),
               Center(
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 20.h), // Adjust padding
-                  child: const Common_Button(
-                    text: "Submit",
-                    destination: IdeaSuccess(),
+                child: GestureDetector(
+                  onTap: () {
+                    fireStoreIdea.addIdea(
+                        nameController.text,
+                        batchController.text,
+                        rollController.text,
+                        ideaController.text,
+                        phoneController.text);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => IdeaSuccess(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 50.h,
+                    width: 200.w,
+                    decoration: BoxDecoration(
+                      color: Coloris.primary_color,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),
