@@ -15,7 +15,7 @@ class Idea extends StatelessWidget {
   final TextEditingController rollController = TextEditingController();
   final TextEditingController ideaController = TextEditingController();
 
-  final firestoreService fireStoreIdea = firestoreService();
+  final FirestoreService fireStoreIdea = FirestoreService();
 
   @override
   Widget build(BuildContext context) {

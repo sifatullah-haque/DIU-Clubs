@@ -1,13 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class firestoreService {
-  final CollectionReference VolunteerCollection =
+class FirestoreService {
+  final CollectionReference volunteerCollection =
       FirebaseFirestore.instance.collection('Volunteer');
-  final CollectionReference IdeaCollection =
+  final CollectionReference ideaCollection =
       FirebaseFirestore.instance.collection("Ideas");
 
-  final CollectionReference SupportCollection =
+  final CollectionReference supportCollection =
       FirebaseFirestore.instance.collection("Supports");
+
+  final CollectionReference joinClubCollection =
+      FirebaseFirestore.instance.collection("JoinClub");
+
+  final CollectionReference itemSelectedCollection =
+      FirebaseFirestore.instance.collection("ItemSelected");
 
   //create: add a new volunteer
   Future<void> addVolunteer(
@@ -19,7 +25,7 @@ class firestoreService {
     String semester,
     String phone,
   ) {
-    return VolunteerCollection.add({
+    return volunteerCollection.add({
       'name': name,
       'email': email,
       'batch': batch,
@@ -39,7 +45,7 @@ class firestoreService {
     String idea,
     String mobile,
   ) {
-    return IdeaCollection.add({
+    return ideaCollection.add({
       'name': name,
       'mobile': mobile,
       'batch': batch,
@@ -55,12 +61,54 @@ class firestoreService {
     String roll,
     String message,
   ) {
-    return SupportCollection.add({
+    return supportCollection.add({
       'name': name,
       'mobile': phone,
       'batch': batch,
       'roll': roll,
       'message': message,
+    });
+  }
+
+  Future<void> addJoinClub(
+    String name,
+    String email,
+    String phone,
+    String batch,
+    String roll,
+    String reg,
+    String semester,
+    String shift,
+    String paymentType,
+    String transactionId,
+    String fbProfileLink,
+    String interestedIn,
+    String expertIn,
+    String clubName,
+  ) {
+    return joinClubCollection.add({
+      'clubName': clubName,
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'batch': batch,
+      'roll': roll,
+      'reg': reg,
+      'semester': semester,
+      'shift': shift,
+      'paymentType': paymentType,
+      'transactionId': transactionId,
+      'fbProfileLink': fbProfileLink,
+      'interestedIn': interestedIn,
+      'expertIn': expertIn,
+    });
+  }
+
+  Future<void> itemSelected(
+    String item,
+  ) {
+    return itemSelectedCollection.add({
+      'item': item,
     });
   }
 }

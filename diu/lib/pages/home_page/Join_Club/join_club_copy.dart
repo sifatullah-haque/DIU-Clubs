@@ -1,23 +1,16 @@
 import 'package:diu/Constant/backend/CRUD.dart';
 import 'package:diu/Constant/color_is.dart';
 import 'package:diu/Constant/common_button.dart';
+import 'package:diu/Constant/provider/provider.dart';
+
 import 'package:diu/pages/home_page/Join_Club/join_club_success.dart';
+import 'package:diu/willDeleteLater/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
-class JoinClub extends StatelessWidget {
-  JoinClub({Key? key}) : super(key: key);
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController batchController = TextEditingController();
-  final TextEditingController rollController = TextEditingController();
-  final TextEditingController regController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController transactionController = TextEditingController();
-  final TextEditingController fbController = TextEditingController();
-  final TextEditingController interestedController = TextEditingController();
-  final TextEditingController expertController = TextEditingController();
+class JoinClubCopy extends StatelessWidget {
+  JoinClubCopy({Key? key}) : super(key: key);
 
   //firebase firestore service adding
 
@@ -25,6 +18,7 @@ class JoinClub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final joinClubState = Provider.of<TestFileState>(context);
     return Scaffold(
       backgroundColor: Coloris.backgroundColor,
       appBar: AppBar(
@@ -48,57 +42,131 @@ class JoinClub extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const InputField(
-                  titleText: "Select Club:",
-                  fieldText: "Select a club from the list"),
-              const InputField(
+              const Text("Select Your Club",
+                  style: TextStyle(
+                    color: Coloris.text_color,
+                  )),
+              SizedBox(height: 10.h),
+              TestFile(
+                text: "Select Club",
+                options: const [
+                  'DIU Computer & Programming Community',
+                  'DIU FPC',
+                  'DIU CDS'
+                ],
+                onItemSelected: (value) {
+                  // Handle the selected value here
+                  print("Semester Type selected: $value");
+                  joinClubState.clubSelectController.text =
+                      value ?? "not selected";
+                },
+              ),
+              SizedBox(height: 10.h),
+              InputField(
+                controller: joinClubState.nameController,
                 titleText: "Full Name: ",
                 fieldText: "Ex: Sifatullah Haque",
               ),
-              const InputField(
+              InputField(
+                controller: joinClubState.emailController,
                 titleText: "Email address: ",
                 fieldText: "Ex: yourname@gmail.com",
               ),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: InputField(
+                      controller: joinClubState.batchController,
                       titleText: "Batch: ",
                       fieldText: "Ex: D-78",
                     ),
                   ),
                   SizedBox(width: 10.w),
-                  const Expanded(
+                  Expanded(
                     child: InputField(
+                      controller: joinClubState.rollController,
                       titleText: "Roll: ",
                       fieldText: "Ex: 10",
                     ),
                   ),
                 ],
               ),
-              const InputField(
+              InputField(
+                  controller: joinClubState.regController,
                   titleText: "Registration No.",
                   fieldText: "Ex: CS-D-78-22-****"),
-              const RadioButton(
-                radioTitle: "Semester Type:",
-                firstOption: "Bi-Semester",
-                secondOption: "Tri-Semester",
-                value2: 1,
+              SizedBox(height: 10.h),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Semester Type:"),
+                        SizedBox(height: 10.h),
+                        TestFile(
+                          text: "Select Semester",
+                          options: ["Bi-Semester", "Tri-Semester"],
+                          onItemSelected: (value) {
+                            // Handle the selected value here
+                            print("Semester Type selected: $value");
+                            joinClubState.semesterController.text =
+                                value ?? "not selected";
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Your Shift:"),
+                        SizedBox(height: 10.h),
+                        TestFile(
+                          text: "Select Shift",
+                          options: ["Day Shift", "Evening Shift"],
+                          onItemSelected: (value) {
+                            // Handle the selected value here
+                            print("Your Shift selected: $value");
+                            joinClubState.shiftController.text =
+                                value ?? "not selected";
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              const RadioButton(
-                radioTitle: "Your Shift:",
-                firstOption: "Day Shift",
-                secondOption: "Evening Shift",
-                value1: 1,
-              ),
-              const InputField(
+              SizedBox(height: 10.h),
+              InputField(
+                controller: joinClubState.phoneController,
                 titleText: "Phone No:",
                 fieldText: "018********",
               ),
-              const RadioButton(
-                  radioTitle: "Payment Type (Send Money)",
-                  firstOption: "Bkash",
-                  secondOption: "Nagad"),
+              const Text("Payment Method: ",
+                  style: TextStyle(
+                    color: Coloris.text_color,
+                  )),
+              SizedBox(height: 10.h),
+              TestFile(
+                text: "Payment Type (Send Money)",
+                options: const [
+                  'Bkash',
+                  'Rocket',
+                  'Nagad',
+                ],
+                onItemSelected: (value) {
+                  // Handle the selected value here
+                  print("Semester Type selected: $value");
+                  joinClubState.paymentController.text =
+                      value ?? "not selected";
+                },
+              ),
+              SizedBox(height: 10.h),
               Text(
                 "Bkash/Nagad Number for Payment 018********",
                 style: TextStyle(
@@ -107,26 +175,68 @@ class JoinClub extends StatelessWidget {
                     fontSize: 18.sp),
               ),
               SizedBox(height: 10.h),
-              const InputField(
-                  titleText: "Transaction Id:", fieldText: "Ex: BBH31HXB5L"),
-              const InputField(
+              InputField(
+                  controller: joinClubState.transactionController,
+                  titleText: "Transaction Id:",
+                  fieldText: "Ex: BBH31HXB5L"),
+              InputField(
+                  controller: joinClubState.fbController,
                   titleText: "Fb Profile Link:",
                   fieldText: "Ex:  www.facebook.com/user.name"),
-              const InputField(
+              InputField(
+                  controller: joinClubState.interestedController,
                   titleText: "Interested In:",
                   fieldText: "Ex:  Programming, Networking"),
-              const InputField(
+              InputField(
+                  controller: joinClubState.expertController,
                   titleText: "Expert In:",
                   fieldText: "ex:  Photography, Development"),
               Center(
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 20.h), // Adjust padding
-                  child: const Common_Button(
-                    text: "Submit",
-                    destination: JoinClubSuccess(),
+                child: GestureDetector(
+                  onTap: () {
+                    fireStoreJoinClub.addJoinClub(
+                      joinClubState.nameController.text,
+                      joinClubState.emailController.text,
+                      joinClubState.batchController.text,
+                      joinClubState.rollController.text,
+                      joinClubState.regController.text,
+                      joinClubState.semesterController.text,
+                      joinClubState.shiftController.text,
+                      joinClubState.phoneController.text,
+                      joinClubState.paymentController.text,
+                      joinClubState.transactionController.text,
+                      joinClubState.fbController.text,
+                      joinClubState.interestedController.text,
+                      joinClubState.expertController.text,
+                      joinClubState.clubSelectController.text,
+                    );
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => JoinClubSuccess(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 50.h,
+                    width: 200.w,
+                    decoration: BoxDecoration(
+                      color: Coloris.primary_color,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -210,6 +320,7 @@ class RadioButton extends StatelessWidget {
 }
 
 class InputField extends StatelessWidget {
+  final TextEditingController controller;
   final String fieldText;
   final String titleText;
   final int? maxLines;
@@ -217,6 +328,7 @@ class InputField extends StatelessWidget {
 
   const InputField({
     Key? key,
+    required this.controller,
     required this.titleText,
     required this.fieldText,
     this.maxLines,
@@ -250,6 +362,7 @@ class InputField extends StatelessWidget {
             children: [
               Expanded(
                 child: TextField(
+                  controller: controller,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     enabledBorder: OutlineInputBorder(

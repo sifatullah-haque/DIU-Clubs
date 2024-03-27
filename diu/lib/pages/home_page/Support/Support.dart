@@ -1,6 +1,6 @@
 import 'package:diu/Constant/backend/CRUD.dart';
 import 'package:diu/Constant/color_is.dart';
-import 'package:diu/Constant/common_button.dart';
+
 import 'package:diu/Constant/common_input_field.dart';
 import 'package:diu/pages/home_page/Support/Supoport_Success.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class Support extends StatelessWidget {
 
   //add firebase firestore
 
-  final firestoreService fireStoreSupport = firestoreService();
+  final FirestoreService fireStoreSupport = FirestoreService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

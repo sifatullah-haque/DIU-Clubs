@@ -1,6 +1,6 @@
 import 'package:diu/Constant/backend/CRUD.dart';
 import 'package:diu/Constant/color_is.dart';
-import 'package:diu/Constant/common_button.dart';
+
 import 'package:diu/Constant/common_input_field.dart';
 
 import 'package:diu/pages/home_page/Volunteer/Volunteer_Success.dart';
@@ -20,7 +20,7 @@ class Volunteer extends StatelessWidget {
 
   //get the firestore service
 
-  final firestoreService fireStoreVolunteer = firestoreService();
+  final FirestoreService fireStoreVolunteer = FirestoreService();
 
   @override
   Widget build(BuildContext context) {

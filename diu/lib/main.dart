@@ -1,20 +1,23 @@
 import 'package:diu/Constant/firebase_options.dart';
+import 'package:diu/Constant/provider/provider.dart';
 
-import 'package:diu/auth/login/isLogin.dart';
-import 'package:diu/pages/home_page/Idea/Idea.dart';
-import 'package:diu/pages/home_page/Support/Support.dart';
-import 'package:diu/pages/home_page/Volunteer/volunteer.dart';
+import 'package:diu/pages/home_page/Join_Club/join_club.dart';
+import 'package:diu/pages/home_page/Join_Club/join_club_copy.dart';
 import 'package:diu/willDeleteLater/test.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+        create: (context) => TestFileState(), child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -27,11 +30,12 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
-          theme: ThemeData(
-            fontFamily: "Poppins",
-          ),
-          debugShowCheckedModeBanner: false,
-          home: Support()),
+        theme: ThemeData(
+          fontFamily: "Poppins",
+        ),
+        debugShowCheckedModeBanner: false,
+        home: JoinClubCopy(),
+      ),
     );
   }
 }
